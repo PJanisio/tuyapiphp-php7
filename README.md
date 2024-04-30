@@ -13,16 +13,16 @@ This fork is for old guys which doesnt like to use composer and love to include 
 
 ## Easiest device lookup code  
 
-`
+```php 
 $config =
-[
+	[
 	"secretKey" => "xxxxxxxxxxxxxxxxxxx" ,
 	"accessKey" => "xxxxxxxxxxxxxxxxxxx" ,
 	'baseUrl'		=> 'https://openapi.tuyaeu.com' ,
 	'debug'		=> true,
 	'associative' => false,
 	'curl_http_version' => \CURL_HTTP_VERSION_1_1,
-];
+	];
 
 	
 	require( '../src/TuyaApi.php' );
@@ -55,4 +55,4 @@ $config =
 	// Send command to device
 	$payload = [ 'code' => 'switch_1' , 'value' => false ];
 	$tuya->devices( $token )->post_commands( $device_id , [ 'commands' => [ $payload ] ] );
-	`
+	```
