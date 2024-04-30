@@ -6,7 +6,9 @@
 	
 	$camera_id = 'xxxxxxxxxxxxxxxxxxxx';
 	
-	$tuya = new \tuyapiphp\TuyaApi( $config );
+
+//start tuyaapi
+$tuya = new TuyaApi($config);
 		
 	// Get a token
 	$token = $tuya->token->get_new( )->result->access_token;

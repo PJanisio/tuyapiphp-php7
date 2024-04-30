@@ -1,6 +1,6 @@
 <?php
 
-namespace tuyapiphp;
+
 
 class Scenes
 {
@@ -28,7 +28,7 @@ class Scenes
             'put_disable_automation' => '/v1.0/homes/{home_id}/automations/{automation_id}/actions/disable',
         ];
 
-    public function __construct(protected array $_config, protected $_token)
+    public function __construct(array $_config,$_token)
     {
     }
 

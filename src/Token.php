@@ -1,19 +1,24 @@
 <?php
 
-namespace tuyapiphp;
 
 class Token
 {
-    protected $_token = '';
-
-    protected $_endpoints =
+    
+   
+    public function __construct(array $_config)
+    {
+        
+   
+    $_token = '';
+    $_endpoints =
         [
             'get_new' => '/v1.0/token?grant_type=1',
             'get_refresh' => '/v1.0/token/{refresh_token}',
         ];
+        
+        $this->_config = $_config;
+        $this->_endpoints = $_endpoints;
 
-    public function __construct(protected array $_config)
-    {
     }
 
     public function __call($name, $args = [])

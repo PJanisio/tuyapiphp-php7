@@ -7,13 +7,16 @@ Central Europe Data Center	https://openapi.tuyaeu.com
 Western Europe Data Center	https://openapi-weaz.tuyaeu.com
 India Data Center	https://openapi.tuyain.com
 */
-	$config =
-	[
-		"secretKey" => "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" ,
-		"accessKey" => "xxxxxxxxxxxxxxxxxxxxxxx" ,
-		'baseUrl'		=> 'https://openapi.tuyaus.com' ,
-		'debug'		=> true
-	];
+$config =
+[
+	"secretKey" => "xxxxxxxxxxxxxxxxxxx" ,
+	"accessKey" => "xxxxxxxxxxxxxxxxxxx" ,
+	'baseUrl'		=> 'https://openapi.tuyaeu.com' ,
+	'debug'		=> true,
+	'associative' => false,
+	'curl_http_version' => \CURL_HTTP_VERSION_1_1,
+];
+
 	
 	require( '../src/TuyaApi.php' );
 	require( '../src/DebugHandler.php' );

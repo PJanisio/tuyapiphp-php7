@@ -1,28 +1,30 @@
 <?php
 
-namespace tuyapiphp;
+
 
 class Request
 {
-    protected string|float $_time = '';
+    protected  $_time = '';
 
-    protected string|array $_headers = '';
+    protected  $_headers = '';
 
-    protected string $_request = '';
+    protected $_request = '';
 
-    protected mixed $_token = '';
+    protected  $_token = '';
 
-    protected string|false $_body = '';
+    protected  $_body = '';
 
-    protected string|false $_payload = '';
+    protected  $_payload = '';
 
-    protected DebugHandler $_debug;
+    protected $_debug;
 
-    public function __construct(protected array $_config, protected string $_endpoint, $request, $token = null, $payload = null, protected mixed $_sigHeaders = null)
+    public function __construct(array $_config, string $_endpoint, $request, $token = null, $payload = null, $_sigHeaders = null)
     {
+        $this->_config = $_config;
+        $this->_endpoint = $_endpoint;
         $this->_time = round(microtime(true) * 1000);
         $this->_request = strtoupper((string) $request);
-        $this->_token = $token ?: ''; // todo
+        $this->_token = $token; // todo
         $this->_payload = $this->_setPayload($payload);
         $this->_body = ($payload && $this->_request != 'GET') ? json_encode($payload, JSON_THROW_ON_ERROR) : '';
         $string = [strtoupper((string) $request), hash('sha256', $this->_body), '', $this->_endpoint];
@@ -30,6 +32,7 @@ class Request
         $sign = $this->_sign($this->_time, $stringtosign);
         $this->_headers = $this->_headers($sign);
         $this->_debug = new DebugHandler($this->_config);
+        $this->_sigHeaders = $_sigHeaders;
     }
 
     protected function _setPayload($payload)
@@ -79,6 +82,8 @@ class Request
         curl_setopt($ch, CURLOPT_FAILONERROR, true);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, $this->_config['curl_http_version']);
         $result = curl_exec($ch);
+        
+        
         if (curl_errno($ch)) {
             $this->_debug->output('Curl error:', curl_error($ch));
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace tuyapiphp;
+
 
 class Caller
 {
@@ -8,8 +8,14 @@ class Caller
 
     protected $_sigHeaders = [];
 
-    public function __construct(protected array $_config, protected $_endpoints, protected $_token = null)
+    public function __construct(array $_config, array $_endpoints, $_token = null)
     {
+        
+        $this->_endpoints = $_endpoints;
+        $this->_config = $_config;
+        $this->_token = $_token;
+        $this->_payload = $_payload;
+        $this->_sigHeaders = $_sigHeaders;
     }
 
     public function send($name, $args = [])
@@ -37,7 +43,9 @@ class Caller
             }
         }
         $request = new Request($this->_config, $uri, $request,
-            $this->_token, $this->_payload, $this->_sigHeaders);
+            $this->_token,
+            $this->_payload,
+            $this->_sigHeaders);
 
         return $request->call();
     }

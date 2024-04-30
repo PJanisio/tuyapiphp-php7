@@ -2,7 +2,8 @@
 
 	require( 'config.php' );
 	
-	$tuya = new \tuyapiphp\TuyaApi( $config );
+	//start tuyaapi
+	$tuya = new TuyaApi($config);
 
 	$data = $tuya->token->get_new( );
 	

@@ -11,26 +11,18 @@
  * @author   	Irony <irony00100@gmail.com>
  */
 
-namespace tuyapiphp;
 
 class TuyaApi
 {
-    protected $_config =
-        [
-            'accessKey' => '',
-            'secretKey' => '',
-            'baseUrl' => '',
-            'debug' => false,
-            'associative' => false,
-            'curl_http_version' => \CURL_HTTP_VERSION_1_1,
-        ];
 
     protected $_required = ['accessKey', 'secretKey', 'baseUrl'];
 
     public function __construct($config)
     {
         $this->_checkConfig($config);
-        $this->_config = array_merge($this->_config, $config);
+        //$this->_config = arr(ay_merge($this->_config, $config);
+        $this->_config = array();
+        $this->_config = $config;
     }
 
     public function devices($token)
@@ -40,7 +32,10 @@ class TuyaApi
 
     public function token()
     {
+
         return new Token($this->_config);
+        
+
     }
 
     public function __get($name)
@@ -48,7 +43,7 @@ class TuyaApi
         return $this->$name();
     }
 
-    protected function _checkConfig($config)
+    public function _checkConfig($config)
     {
         try {
             if (count(array_intersect_key(array_flip($this->_required),

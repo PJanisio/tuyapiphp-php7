@@ -1,11 +1,12 @@
 <?php
 
-namespace tuyapiphp;
 
 class DebugHandler
 {
-    public function __construct(protected array $_config)
+    public function __construct(array $_config)
+
     {
+        $this->_config = $_config;
     }
 
     public function output($msg, $data = null)

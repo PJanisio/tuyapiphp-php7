@@ -1,10 +1,15 @@
 <?php
 
-namespace tuyapiphp;
 
 class Devices
 {
-    protected $_endpoints =
+
+    public function __construct($_config, $_token)
+    {
+        
+        $_endpoints = array();
+        
+        $_endpoints =
     [
         'get_app_list' => '/v1.0/users/{appId}/devices',
         'get_list' => '/v1.0/devices',
@@ -38,9 +43,14 @@ class Devices
         'delete_user' => '/v1.0/devices/{device_id}/users/{user_id}',
         'delete_group' => '/v1.0/device-groups/{group_id}',
     ];
+        
+        
+        
+        
+        $this->_config = $_config;
+        $this->_endpoints = $_endpoints;
+        $this->_token = $_token;
 
-    public function __construct(protected array $_config, protected $_token)
-    {
     }
 
     public function __call($name, $args = [])
