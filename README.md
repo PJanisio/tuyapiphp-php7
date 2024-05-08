@@ -43,7 +43,7 @@ $config =
 	// Get a token
 	$token = $tuya->token->get_new( )->result->access_token;
 	
-	// Get list of devices connected with android app
+	// Get list of devices together with their parameters connected with android app
 	$tuya->devices( $token )->get_app_list( $app_id );
 	
 	// Get device status
